@@ -1,0 +1,158 @@
+{
+  "profile": {
+    "name": "Jordan Lee",
+    "headline": "Product Operations & Business Analysis",
+    "city": "Toronto, ON",
+    "phone": "+1 416 555 0100",
+    "email": "jordan.lee@example.com",
+    "linkedin": "linkedin.com/in/jordan-lee-demo",
+    "summary": "Results-oriented professional with fictional demonstration experience in product operations, business analysis, process improvement, and stakeholder communication."
+  },
+  "experiences": [
+    {
+      "id": "exp-demo-northstar-product-ops",
+      "company": "Northstar Labs",
+      "role": "Product Operations Analyst",
+      "location": "Toronto, ON",
+      "start": "Jan 2024",
+      "end": "Present",
+      "bullets": [
+        {
+          "id": "b-demo-northstar-workflows",
+          "text": "Coordinated product, sales, and support workflows across four fictional teams, reducing demonstration handoff time by 28%.",
+          "tags": [
+            "product operations",
+            "cross-functional collaboration",
+            "process improvement"
+          ]
+        },
+        {
+          "id": "b-demo-northstar-reporting",
+          "text": "Built a weekly KPI reporting workflow and summarized fictional customer feedback into prioritized product recommendations.",
+          "tags": [
+            "analytics",
+            "kpi reporting",
+            "customer insights"
+          ]
+        },
+        {
+          "id": "b-demo-northstar-documentation",
+          "text": "Documented and standardized 12 fictional recurring processes to improve onboarding consistency.",
+          "tags": [
+            "documentation",
+            "onboarding",
+            "standardization"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exp-demo-maple-bridge-analyst",
+      "company": "Maple Bridge Consulting",
+      "role": "Business Analyst",
+      "location": "Remote, Canada",
+      "start": "May 2022",
+      "end": "Dec 2023",
+      "bullets": [
+        {
+          "id": "b-demo-maple-data",
+          "text": "Analyzed fictional operational data in Excel and SQL to identify annual cost-saving opportunities valued at $120,000.",
+          "tags": [
+            "sql",
+            "excel",
+            "data analysis",
+            "cost reduction"
+          ]
+        },
+        {
+          "id": "b-demo-maple-requirements",
+          "text": "Facilitated demonstration requirements workshops with more than 15 fictional stakeholders and translated findings into implementation plans.",
+          "tags": [
+            "requirements analysis",
+            "stakeholder management",
+            "facilitation"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "exp-demo-community-event-finder",
+      "company": "Independent Project",
+      "role": "Community Event Finder",
+      "location": "Toronto, ON",
+      "start": "Sep 2023",
+      "end": "Dec 2023",
+      "bullets": [
+        {
+          "id": "b-demo-event-api",
+          "text": "Built a demonstration REST API for searching fictional community events by date, category, and location.",
+          "tags": [
+            "rest api",
+            "python",
+            "search"
+          ]
+        },
+        {
+          "id": "b-demo-event-deployment",
+          "text": "Deployed the fictional application to a Linux cloud instance with automated service restarts.",
+          "tags": [
+            "linux",
+            "cloud deployment",
+            "automation"
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-demo-example-university",
+      "school": "Example University",
+      "degree": "Bachelor of Commerce, Business Technology Management",
+      "location": "Toronto, ON",
+      "start": "Sep 2018",
+      "end": "May 2022",
+      "detail": "Fictional academic record used only for product demonstration."
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill-demo-tools",
+      "label": "Tools",
+      "items": "Excel, SQL, Tableau, Jira, Notion"
+    },
+    {
+      "id": "skill-demo-business",
+      "label": "Business",
+      "items": "Process improvement, requirements analysis, stakeholder management"
+    },
+    {
+      "id": "skill-demo-technical",
+      "label": "Technical",
+      "items": "Python, REST APIs, Linux, cloud deployment"
+    },
+    {
+      "id": "skill-demo-languages",
+      "label": "Languages",
+      "items": "English, French"
+    }
+  ],
+  "selectedBulletIds": [
+    "b-demo-northstar-workflows",
+    "b-demo-northstar-reporting",
+    "b-demo-northstar-documentation",
+    "b-demo-maple-data",
+    "b-demo-maple-requirements",
+    "b-demo-event-api",
+    "b-demo-event-deployment"
+  ],
+  "bulletOverrides": {},
+  "target": {
+    "title": "",
+    "company": "",
+    "requirements": ""
+  },
+  "versions": [],
+  "template": "classic",
+  "accent": "#275d4c"
+}

@@ -1,0 +1,70 @@
+{
+  "profile": {
+    "name": "Your Name",
+    "headline": "Target Role Title",
+    "city": "Toronto, ON",
+    "phone": "+1 000 000 0000",
+    "email": "name@example.com",
+    "linkedin": "linkedin.com/in/yourname",
+    "summary": "A concise target-specific summary supported entirely by evidence in the material library."
+  },
+  "experiences": [
+    {
+      "id": "exp-example-role-2024",
+      "company": "Company Name",
+      "role": "Official Historical Role Title",
+      "location": "Toronto, ON",
+      "start": "Jan 2024",
+      "end": "Present",
+      "bullets": [
+        {
+          "id": "b-example-role-achievement-1",
+          "text": "Original verified material-library wording that must remain unchanged.",
+          "tags": [
+            "data analysis",
+            "stakeholder management"
+          ]
+        },
+        {
+          "id": "b-example-role-achievement-2",
+          "text": "Another original verified achievement from the material library.",
+          "tags": [
+            "process improvement"
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-example-degree",
+      "school": "University Name",
+      "degree": "Degree, Program",
+      "location": "City, Province",
+      "start": "Sep 2020",
+      "end": "May 2024",
+      "detail": ""
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill-tools",
+      "label": "Tools",
+      "items": "Excel, SQL"
+    }
+  ],
+  "selectedBulletIds": [
+    "b-example-role-achievement-1"
+  ],
+  "bulletOverrides": {
+    "b-example-role-achievement-1": "Target-specific wording that preserves every fact from the original bullet."
+  },
+  "target": {
+    "title": "Target Role Title",
+    "company": "Target Company",
+    "requirements": "Paste the complete Job Description here."
+  },
+  "versions": [],
+  "template": "classic",
+  "accent": "#275d4c"
+}

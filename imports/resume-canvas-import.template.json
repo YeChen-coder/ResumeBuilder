@@ -1,0 +1,67 @@
+{
+  "profile": {
+    "name": "Your Name",
+    "headline": "General Professional Headline",
+    "city": "Toronto, ON",
+    "phone": "+1 000 000 0000",
+    "email": "name@example.com",
+    "linkedin": "linkedin.com/in/yourname",
+    "summary": "A factual, general professional summary based only on the source materials."
+  },
+  "experiences": [
+    {
+      "id": "exp-example-role-2024",
+      "company": "Company Name",
+      "role": "Official Role Title",
+      "location": "Toronto, ON",
+      "start": "Jan 2024",
+      "end": "Present",
+      "bullets": [
+        {
+          "id": "b-example-role-achievement-1",
+          "text": "Describe a verified action, its scope, the method used, and the result without inventing facts.",
+          "tags": [
+            "relevant skill",
+            "tool",
+            "business capability"
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "edu-example-degree",
+      "school": "University Name",
+      "degree": "Degree, Program",
+      "location": "City, Province",
+      "start": "Sep 2020",
+      "end": "May 2024",
+      "detail": ""
+    }
+  ],
+  "skills": [
+    {
+      "id": "skill-tools",
+      "label": "Tools",
+      "items": "Excel, SQL"
+    },
+    {
+      "id": "skill-languages",
+      "label": "Languages",
+      "items": "English, Mandarin"
+    }
+  ],
+  "selectedBulletIds": [
+    "b-example-role-achievement-1"
+  ],
+  "bulletOverrides": {},
+  "target": {
+    "title": "",
+    "company": "",
+    "requirements": ""
+  },
+  "versions": [],
+  "template": "classic",
+  "accent": "#275d4c"
+}
