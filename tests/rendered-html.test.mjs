@@ -18,6 +18,7 @@ test("server-renders Resume Canvas", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
   const html = await response.text();
   assert.match(html, /Resume Canvas/);
+  assert.match(html, />WORD</);
   assert.match(html, /本地简历工作台/);
   assert.match(html, /真实经历素材库/);
   assert.match(html, /智能生成岗位版/);

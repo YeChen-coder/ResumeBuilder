@@ -212,6 +212,7 @@ export function ResumeStudio() {
   const [isHydrated, setHydrated] = useState(false);
   const [coverage, setCoverage] = useState<string[]>([]);
   const [search, setSearch] = useState("");
+  const [isExportingWord, setExportingWord] = useState(false);
   const [draggedBulletId, setDraggedBulletId] = useState<string | null>(null);
   const [dragOverBulletId, setDragOverBulletId] = useState<string | null>(null);
   const importRef = useRef<HTMLInputElement>(null);
@@ -603,14 +604,19 @@ export function ResumeStudio() {
     }));
     setToast("已恢复该岗位版本");
   }
-  function download(filename: string, content: string, type: string) {
-    const blob = new Blob([content], { type });
+  function downloadBlob(filename: string, blob: Blob) {
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
     anchor.download = filename;
+    anchor.style.display = "none";
+    document.body.appendChild(anchor);
     anchor.click();
-    URL.revokeObjectURL(url);
+    anchor.remove();
+    window.setTimeout(() => URL.revokeObjectURL(url), 1_000);
+  }
+  function download(filename: string, content: string, type: string) {
+    downloadBlob(filename, new Blob([content], { type }));
   }
   function exportText() {
     const lines = [
@@ -645,6 +651,22 @@ export function ResumeStudio() {
       lines.join("\n"),
       "text/plain;charset=utf-8",
     );
+  }
+  async function exportWord() {
+    setExportingWord(true);
+    try {
+      const [{ Packer }, { buildResumeWordDocument, resumeWordFilename }] =
+        await Promise.all([import("docx"), import("./resumeWord.mjs")]);
+      const wordDocument = buildResumeWordDocument(data, selectedExperiences);
+      const blob = await Packer.toBlob(wordDocument);
+      downloadBlob(`${resumeWordFilename(data)}.docx`, blob);
+      setToast("Word 简历已生成，可在 Word 中自由编辑格式");
+    } catch (error) {
+      console.error("Unable to export Word resume", error);
+      setToast("Word 文件生成失败，请稍后重试");
+    } finally {
+      setExportingWord(false);
+    }
   }
   function exportBackup() {
     download("resume-canvas-backup.json", JSON.stringify(data, null, 2), "application/json");
@@ -999,6 +1021,14 @@ export function ResumeStudio() {
               </button>
             )}
             <label className="accent-picker"><span>主题色</span><input type="color" value={data.accent} onChange={(event) => setData((current) => ({ ...current, accent: event.target.value }))} /></label>
+            <button
+              className="toolbar-button word-button"
+              onClick={exportWord}
+              disabled={isExportingWord}
+              title="导出为可编辑的 Microsoft Word 文档"
+            >
+              {isExportingWord ? "生成中…" : "WORD"}
+            </button>
             <button className="toolbar-button" onClick={exportText}>TXT</button>
             <button className="toolbar-button" onClick={() => window.print()}>PDF</button>
           </div>

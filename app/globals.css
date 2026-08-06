@@ -333,6 +333,13 @@ button { cursor: pointer; }
 .accent-picker { display: flex; align-items: center; gap: 5px; color: var(--muted); font-size: 9px; }
 .accent-picker input { width: 24px; height: 24px; border: 0; padding: 0; background: transparent; }
 .toolbar-button { min-height: 27px; padding: 0 8px; font-size: 9px; }
+.toolbar-button:disabled { opacity: .55; cursor: wait; }
+.word-button {
+  border-color: #2b579a;
+  background: #2b579a;
+  color: white;
+}
+.word-button:hover:not(:disabled) { background: #23477f; }
 .tailored-state {
   border-color: #a9c6b9;
   color: var(--sage);
