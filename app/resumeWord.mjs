@@ -109,10 +109,20 @@ export function buildResumeWordDocument(data, selectedExperiences) {
   if (selectedExperiences.length > 0) {
     paragraphs.push(sectionHeading("Professional Experience"));
     selectedExperiences.forEach((experience) => {
+      const dateLine = [experience.start, experience.end]
+        .map((value) => value.trim())
+        .filter(Boolean)
+        .join(" - ");
+      const organizationLine = dateLine
+        ? [experience.company, experience.location]
+            .map((value) => value.trim())
+            .filter(Boolean)
+            .join(" | ")
+        : "";
       paragraphs.push(
         new Paragraph({
           tabStops: [{ type: TabStopType.RIGHT, position: rightTab }],
-          spacing: { before: 50, after: 10 },
+          spacing: { before: 50, after: organizationLine ? 10 : 30 },
           keepNext: true,
           children: [
             new TextRun({
@@ -122,30 +132,36 @@ export function buildResumeWordDocument(data, selectedExperiences) {
               size: 21,
               color: ink,
             }),
-            new TextRun({
-              text: `\t${experience.start} - ${experience.end}`,
-              font: "Arial",
-              size: 18,
-              color: muted,
-            }),
-          ],
-        }),
-        new Paragraph({
-          spacing: { after: 30 },
-          keepNext: experience.bullets.length > 0,
-          children: [
-            new TextRun({
-              text: [experience.company, experience.location]
-                .filter(Boolean)
-                .join(" | "),
-              italics: true,
-              font: "Arial",
-              size: 18,
-              color: muted,
-            }),
+            ...(dateLine
+              ? [
+                  new TextRun({
+                    text: `\t${dateLine}`,
+                    font: "Arial",
+                    size: 18,
+                    color: muted,
+                  }),
+                ]
+              : []),
           ],
         }),
       );
+      if (organizationLine) {
+        paragraphs.push(
+          new Paragraph({
+            spacing: { after: 30 },
+            keepNext: experience.bullets.length > 0,
+            children: [
+              new TextRun({
+                text: organizationLine,
+                italics: true,
+                font: "Arial",
+                size: 18,
+                color: muted,
+              }),
+            ],
+          }),
+        );
+      }
       experience.bullets.forEach((bullet) => {
         paragraphs.push(
           new Paragraph({

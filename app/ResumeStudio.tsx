@@ -630,12 +630,25 @@ export function ResumeStudio() {
       data.profile.summary,
       "",
       "EXPERIENCE",
-      ...selectedExperiences.flatMap((experience) => [
-        `${experience.role} | ${experience.company} | ${experience.location}`,
-        `${experience.start} – ${experience.end}`,
-        ...experience.bullets.map((bullet) => `• ${bullet.text}`),
-        "",
-      ]),
+      ...selectedExperiences.flatMap((experience) => {
+        const dateLine = [experience.start, experience.end]
+          .map((value) => value.trim())
+          .filter(Boolean)
+          .join(" – ");
+        const organizationLine = dateLine
+          ? [experience.company, experience.location]
+              .map((value) => value.trim())
+              .filter(Boolean)
+              .join(" | ")
+          : "";
+        return [
+          experience.role,
+          organizationLine,
+          dateLine,
+          ...experience.bullets.map((bullet) => `• ${bullet.text}`),
+          "",
+        ].filter((line, index, lines) => Boolean(line) || index === lines.length - 1);
+      }),
       "EDUCATION",
       ...data.education.flatMap((education) => [
         `${education.degree} | ${education.school}`,
@@ -1052,85 +1065,97 @@ export function ResumeStudio() {
 
               <section className="resume-section">
                 <h2>Professional Experience</h2>
-                {selectedExperiences.map((experience) => (
-                  <div className="resume-entry" key={experience.id}>
-                    <div className="entry-heading">
-                      <div>
-                        <input className="entry-role" value={experience.role} aria-label="职位" onChange={(event) => updateExperience(experience.id, "role", event.target.value)} />
-                        <input className="entry-company" value={`${experience.company} · ${experience.location}`} aria-label="公司和地点" readOnly />
+                {selectedExperiences.map((experience) => {
+                  const dateLine = [experience.start, experience.end]
+                    .map((value) => value.trim())
+                    .filter(Boolean)
+                    .join(" – ");
+                  const organizationLine = dateLine
+                    ? [experience.company, experience.location]
+                        .map((value) => value.trim())
+                        .filter(Boolean)
+                        .join(" · ")
+                    : "";
+                  return (
+                    <div className="resume-entry" key={experience.id}>
+                      <div className="entry-heading">
+                        <div>
+                          <input className="entry-role" value={experience.role} aria-label="职位" onChange={(event) => updateExperience(experience.id, "role", event.target.value)} />
+                          {organizationLine && <input className="entry-company" value={organizationLine} aria-label="公司和地点" readOnly />}
+                        </div>
+                        {dateLine && <input className="entry-date" value={dateLine} aria-label="任职时间" readOnly />}
                       </div>
-                      <input className="entry-date" value={`${experience.start} – ${experience.end}`} aria-label="任职时间" readOnly />
-                    </div>
-                    <ul>
-                      {experience.bullets.map((bullet) => (
-                        <li
-                          className={
-                            dragOverBulletId === bullet.id ? "drag-over" : ""
-                          }
-                          key={bullet.id}
-                          onDragOver={(event) =>
-                            allowBulletDrop(event, bullet.id)
-                          }
-                          onDrop={(event) => {
-                            event.preventDefault();
-                            if (draggedBulletId) {
-                              reorderBullet(draggedBulletId, bullet.id);
+                      <ul>
+                        {experience.bullets.map((bullet) => (
+                          <li
+                            className={
+                              dragOverBulletId === bullet.id ? "drag-over" : ""
                             }
-                          }}
-                        >
-                          <div className="resume-bullet-row">
-                            <span
-                              className="resume-drag-handle"
-                              draggable
-                              title="拖动调整当前经历内的顺序"
-                              aria-label="拖动调整顺序"
-                              onDragStart={(event) =>
-                                beginBulletDrag(event, bullet.id)
+                            key={bullet.id}
+                            onDragOver={(event) =>
+                              allowBulletDrop(event, bullet.id)
+                            }
+                            onDrop={(event) => {
+                              event.preventDefault();
+                              if (draggedBulletId) {
+                                reorderBullet(draggedBulletId, bullet.id);
                               }
-                              onDragEnd={() => {
-                                setDraggedBulletId(null);
-                                setDragOverBulletId(null);
-                              }}
-                            >
-                              ⠿
-                            </span>
-                            <textarea
-                              aria-label="岗位版成果描述"
-                              value={bullet.text}
-                              rows={2}
-                              onChange={(event) =>
-                                updateResumeBullet(
-                                  bullet.id,
-                                  event.target.value,
-                                )
-                              }
-                            />
-                            <div className="resume-order-controls">
-                              <button
-                                type="button"
-                                aria-label="向上移动"
-                                title="向上移动"
-                                disabled={!canMoveBullet(bullet.id, -1)}
-                                onClick={() => moveBullet(bullet.id, -1)}
+                            }}
+                          >
+                            <div className="resume-bullet-row">
+                              <span
+                                className="resume-drag-handle"
+                                draggable
+                                title="拖动调整当前经历内的顺序"
+                                aria-label="拖动调整顺序"
+                                onDragStart={(event) =>
+                                  beginBulletDrag(event, bullet.id)
+                                }
+                                onDragEnd={() => {
+                                  setDraggedBulletId(null);
+                                  setDragOverBulletId(null);
+                                }}
                               >
-                                ↑
-                              </button>
-                              <button
-                                type="button"
-                                aria-label="向下移动"
-                                title="向下移动"
-                                disabled={!canMoveBullet(bullet.id, 1)}
-                                onClick={() => moveBullet(bullet.id, 1)}
-                              >
-                                ↓
-                              </button>
+                                ⠿
+                              </span>
+                              <textarea
+                                aria-label="岗位版成果描述"
+                                value={bullet.text}
+                                rows={2}
+                                onChange={(event) =>
+                                  updateResumeBullet(
+                                    bullet.id,
+                                    event.target.value,
+                                  )
+                                }
+                              />
+                              <div className="resume-order-controls">
+                                <button
+                                  type="button"
+                                  aria-label="向上移动"
+                                  title="向上移动"
+                                  disabled={!canMoveBullet(bullet.id, -1)}
+                                  onClick={() => moveBullet(bullet.id, -1)}
+                                >
+                                  ↑
+                                </button>
+                                <button
+                                  type="button"
+                                  aria-label="向下移动"
+                                  title="向下移动"
+                                  disabled={!canMoveBullet(bullet.id, 1)}
+                                  onClick={() => moveBullet(bullet.id, 1)}
+                                >
+                                  ↓
+                                </button>
+                              </div>
                             </div>
-                          </div>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                })}
               </section>
 
               <section className="resume-section">
