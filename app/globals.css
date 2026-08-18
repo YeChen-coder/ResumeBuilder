@@ -379,7 +379,13 @@ button { cursor: pointer; }
   margin: 0 0 8px; padding-bottom: 4px; border-bottom: 1.5px solid var(--resume-accent);
   color: var(--resume-accent); font-size: 10px; letter-spacing: .12em; text-transform: uppercase;
 }
-.resume-section > textarea { height: 50px; font-size: 9.5px; line-height: 1.45; }
+.resume-section > textarea {
+  min-height: 50px;
+  height: auto;
+  overflow-y: hidden;
+  font-size: 9.5px;
+  line-height: 1.45;
+}
 .resume-entry { margin-top: 10px; }
 .entry-heading { display: flex; justify-content: space-between; align-items: flex-start; gap: 14px; }
 .entry-heading > div { flex: 1; }

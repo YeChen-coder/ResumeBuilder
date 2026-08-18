@@ -216,6 +216,7 @@ export function ResumeStudio() {
   const [draggedBulletId, setDraggedBulletId] = useState<string | null>(null);
   const [dragOverBulletId, setDragOverBulletId] = useState<string | null>(null);
   const importRef = useRef<HTMLInputElement>(null);
+  const summaryRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -244,6 +245,17 @@ export function ResumeStudio() {
     const timer = window.setTimeout(() => setToast(""), 2600);
     return () => window.clearTimeout(timer);
   }, [toast]);
+  useEffect(() => {
+    const summary = summaryRef.current;
+    if (!summary) return;
+    const resizeSummary = () => {
+      summary.style.height = "auto";
+      summary.style.height = `${Math.ceil(summary.scrollHeight) + 2}px`;
+    };
+    resizeSummary();
+    window.addEventListener("resize", resizeSummary);
+    return () => window.removeEventListener("resize", resizeSummary);
+  }, [data.profile.summary]);
 
   const selectedExperience =
     data.experiences.find((item) => item.id === selectedExp) ?? data.experiences[0];
@@ -1060,7 +1072,7 @@ export function ResumeStudio() {
 
               <section className="resume-section">
                 <h2>Professional Summary</h2>
-                <textarea aria-label="职业简介" value={data.profile.summary} onChange={(event) => updateProfile("summary", event.target.value)} rows={4} />
+                <textarea ref={summaryRef} aria-label="职业简介" value={data.profile.summary} onChange={(event) => updateProfile("summary", event.target.value)} rows={4} />
               </section>
 
               <section className="resume-section">
