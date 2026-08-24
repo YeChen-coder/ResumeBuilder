@@ -1,8 +1,6 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
-# dependencies
-/node_modules
-/.pnp
+# Dependencies and package-manager state
+/node_modules/
+/.pnp/
 .pnp.*
 .yarn/*
 !.yarn/patches
@@ -10,41 +8,62 @@
 !.yarn/releases
 !.yarn/versions
 
-# testing
-/coverage
+# Tests and generated output
+/coverage/
 /tmp/
+/outputs/
+/exports/
+/work/
+/dist/
 
-# next.js
+# Framework and hosting output
 /.next/
 /.vinext/
 /out/
+/.wrangler/
 
-# misc
+# Local operating-system and editor files
 .DS_Store
-*.pem
+Thumbs.db
+Desktop.ini
+/.idea/
+/.vscode/
+*.swp
+*.swo
 
-# debug
+# Secrets and machine-local configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.cer
+*.crt
+
+# Local databases and private data exports
+*.db
+*.db-journal
+*.sqlite
+*.sqlite3
+*.local.json
+
+# Logs and debug output
+*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
-.dev-server*.log
 
-# env files (can opt-in for committing if needed)
-.env*
+# Provider-local state
+.vercel/
 
-# vercel
-.vercel
-
-# typescript
+# TypeScript
 next-env.d.ts
 *.tsbuildinfo
-/dist/
-/.wrangler/
-/outputs/
-/work/
 
-# personal resume imports and tailoring reports (keep private)
+# Personal resume imports and tailoring reports
 /imports/*
 !/imports/resume-canvas-import.template.json
 !/imports/resume-canvas-tailored.template.json
