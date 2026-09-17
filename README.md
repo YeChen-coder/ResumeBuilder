@@ -28,6 +28,12 @@ The system reads the keywords in the job description, selects the relevant indiv
 
 That said, the author sincerely believes this middle feature is not particularly useful—honestly, almost not useful at all. In the current era, few people are likely to rely on simple job-description keyword matching to choose items from an experience library; it does not feel very intelligent. Most people now use language models to refine and tailor their content.
 
+An update from half a month later: it is useful. It is genuinely very useful—trust me. When the token allowance is plentiful, the middle section may seem unnecessary; when tokens are running desperately low, it becomes invaluable.
+
+<img width="673" height="120" alt="Token usage limit" src="https://github.com/user-attachments/assets/470b678d-5393-4b56-bcb0-c86c8a63e8c2" />
+
+(Tibo, we need a reset !! plz )
+
 This leads to one of the genuinely useful parts of the system: it includes ready-made prompts that you can give directly to your preferred AI. The AI produces a JSON file in the required format, and you can import that file using the button in the upper-right corner to generate a complete resume. This approach remains very flexible. The prompt defines only the data format; it does not dictate what you must write.
 
 You can change the writing instructions according to your own needs. Everyone has different preferences, and the best part about prompts is that they are easy and inexpensive to modify. You can tell the large language model you already use how to make decisions according to your own priorities. In today's era of “democratized technology” brought about by large language models, one of the greatest benefits is that people can create highly customized content at very low cost and with almost no learning curve.
